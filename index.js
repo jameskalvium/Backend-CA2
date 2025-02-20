@@ -18,6 +18,9 @@ app.get("/user",(req,res)=>{
     if(!email){
         return res.status(400).json({message:"email is required"})
     }
+    if(!(email.includes(".")&& email.includes("@"))){
+        return res.status(400).json({message: "incorrect email format"})
+    }
     const user =userData.find(user => user.email === email)
     if(!user){
         return res.status(404).json({message: "user not found"})
